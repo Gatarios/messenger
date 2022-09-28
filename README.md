@@ -40,4 +40,4 @@
 2. Пункты 1 и 2 можно рассматривать вместе.
 
 
-Create by Gatarios
+Create by Gatarios feat. Алексей Кузовкин
