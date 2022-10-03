@@ -9,7 +9,7 @@ uses {$ifdef unix} cthreads {$endif} crt, connections, sockets, sysutils, window
 
 var
 sockMain, sockSlave: connectionSocket;
-clCount,nstr: integer;
+clCount: integer;
 isConnect: int64;
 clSockets: array of longword;
 textar: array [5..30] of string;
@@ -62,30 +62,15 @@ begin
 	//command manage
 	
 	if (isConnect <> 0) and (isConnect <> -1) then
-		begin
-			if clmsg<>'' then
-			begin
-			
-			if (nstr>=4) and (nstr<=24) then
-			begin
-			clmsg  :=  inttostr(nstr) + ':' + NameClient[cl.numberSocket] + ': ' + clmsg;
-			writeln(clmsg);
-			for  iprv := 0 to clCount-1 do
-			fpsend(clSockets[iprv], @clmsg, 254, 0);
-			inc(nstr);
-			end
-			else
-			begin
-			nstr:=5;
-			clmsg  :=  inttostr(nstr) + ':' + NameClient[cl.numberSocket] + ': ' + clmsg;
-			writeln(clmsg);
-			for  iprv := 0 to clCount-1 do
-			fpsend(clSockets[iprv], @clmsg, 254, 0);
-			inc(nstr);
-			end;
-			end;
-			
+	begin
+		if clmsg<>'' then
+		begin	
+				clmsg  :=NameClient[cl.numberSocket] + ': ' + clmsg;
+				writeln(clmsg);
+				for  iprv := 0 to clCount-1 do
+					fpsend(clSockets[iprv], @clmsg, 254, 0);
 		end;
+	end;
 		
 	until (isConnect = 0) or (isConnect = -1);
 	
@@ -113,7 +98,6 @@ val(portstr,port,codeerr);
 clrscr;
 until (codeerr=0) and (port >= 1024) and (port <= 49151);
 
-nstr:=5;
 sockMain.createSocket(port);
 
 repeat
