@@ -84,8 +84,8 @@ function connectionSocket.receiveMsg(var msg: string): int64;
 var pmsg: string;
 begin
 receiveMsg:=fprecv(numberSocket, @pmsg, 254, 0);
-if (receiveMsg = -1) and (socketError<>10054) and (socketError<>10057)
-then write('Error receive message: ', socketError, ' ', numberSocket);
+//if (receiveMsg = -1) and (socketError<>10054) and (socketError<>10057)
+//then write('Error receive message: ', socketError, ' ', numberSocket);
 msg:=pmsg;
 end;
 
@@ -94,8 +94,8 @@ end;
 procedure connectionSocket.receiveMsg(var msg: string);
 var pmsg: string;
 begin
-if (fprecv(numberSocket, @pmsg, 254, 0) = -1) and (socketError<>10054) and (socketError<>10057)
-then write('Error receive message: ', socketError, ' ', numberSocket);
+//if (fprecv(numberSocket, @pmsg, 254, 0) = -1) and (socketError<>10054) and (socketError<>10057)
+//then write('Error receive message: ', socketError, ' ', numberSocket);
 msg:=pmsg;
 end;
 
@@ -107,8 +107,8 @@ begin
 pmsg:=msg;
 //fpconnect(numberSocket, @addrlist, length(msg)+4);
 sendMsg:=fpsend(numberSocket, @pmsg, 254, 0);
-if (sendMsg=-1) and (socketError<>10057)
-then write('Error send message: ', socketError, ' ', numberSocket);
+//if (sendMsg=-1) and (socketError<>10057)
+//then write('Error send message: ', socketError, ' ', numberSocket);
 end;
 
 //send msg
@@ -118,8 +118,8 @@ i: longint;
 begin
 pmsg:=msg;
 //fpconnect(numberSocket, @addrlist, length(msg)+4);
-if (fpsend(numberSocket, @pmsg, 254, 0) =-1) and (socketError<>10057)
-then write('Error send message: ', socketError, ' ', numberSocket);
+//if (fpsend(numberSocket, @pmsg, 254, 0) =-1) and (socketError<>10057)
+//then write('Error send message: ', socketError, ' ', numberSocket);
 end;
 
 //close socket
